@@ -1,0 +1,274 @@
+<template name="Home_Page">
+  <div class="ui middle stackable aligned centered grid container">
+
+    <div class="six wide column left floated left aligned">
+      <h1 class="ui header centered">How to play</h1><br>
+      <br>
+      <div class="home-started-steps">
+        <div class="ui list">
+          <div class="item">
+            <b>Step 1:</b> Lorem ipsum Mollit commodo cillum culpa pariatur Duis dolore culpa et in in esse deserunt ut labore laboris dolore velit irure elit occaecat enim in nisi reprehenderit dolore laborum esse in in proident Duis.
+          </div><br>
+          <div class="item">
+            <b>Step 2:</b> Lorem ipsum Mollit commodo cillum culpa pariatur Duis dolore culpa et in in esse deserunt ut labore laboris dolore velit irure elit occaecat enim in nisi reprehenderit dolore laborum esse in in proident Duis.
+          </div><br>
+          <div class="item">
+            <b>Step 3:</b> Lorem ipsum Mollit commodo cillum culpa pariatur Duis dolore culpa et in in esse deserunt ut labore laboris dolore velit irure elit occaecat enim in nisi reprehenderit dolore laborum esse in in proident Duis.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="six wide column left floated text-left">
+      <form class="ui form centered" id="place-bet-form">
+        <h1 class="ui header centered">Place Bet</h1><br>
+        <div class="field">
+          <label>Name</label>
+          <input type="text" name="first-name" placeholder="Name" id="name" value="abcdefg">
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="last-name" placeholder="Email Address" id="email" value="abcd@gmail.com">
+        </div>
+
+        <div class="field">
+          <label>Asset Name</label>
+          <select class="ui fluid dropdown" id="asset">
+            <option value="ETH">ETH</option>
+            <option value="">Asset Name</option>
+            <option value="BTC">BTC</option>
+            
+            <option value="LTC">LTC</option>
+            <option value="ZEC">ZEC</option>
+            <option value="DASH">DASH</option>
+            <option value="XRP">XRP</option>
+            <option value="XMR">XMR</option>
+            <option value="SLR">SLR</option>
+          </select>
+        </div>
+        
+        <div class="field">
+          <label>Start Time</label>
+          <div class="ui calendar" id="startTime">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time" id="start">
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>End Time</label>
+          <div class="ui calendar" id="endTime">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+           <label>To</label>
+           <input type="text" name="to" placeholder="To" id="toAddress" value="0xD36c5BF63ff7E0eAF7668767CBa1143653D7eC93" disabled="true">
+        </div>  
+<!--
+        <div class="field">
+           <label>From Address</label>
+           <input type="text" name="FromAddress" placeholder="From address" id="FromAddress">
+        </div>
+-->
+        <div class="field">
+           <label>Amount</label>
+           <input type="text" name="amount" placeholder="Amount" id="amount" value="0.001">
+        </div> 
+
+  
+        
+<!--
+        {{#if walletAddress}}
+          <div class="field">
+            <label>From</label>
+            <input type="text" name="from" placeholder="From" id="fromAddress" value="{{walletAddress}}" disabled="true">
+          </div>
+          <div class="field">
+            <label>To</label>
+            <input type="text" name="to" placeholder="To" id="toAddress" value="0xa2411d8ab3b28c5c7497d7cbc0efb073eff1d007" disabled="true">
+          </div>  
+          <div class="field">
+            <label>Amount</label>
+            <input type="text" name="amount" placeholder="Amount" id="amount">
+          </div>  
+        {{else}}
+          <div class="field">
+            <a class="ui primary button left" id="generateWalletModal">Generate</a>
+            <a class="ui positive button right" id="restoreWalletModal">Restore</a>
+          </div>
+        {{/if}}
+        -->
+        <div class="field">
+          <button class="ui button submit-btn" type="submit">Place Bet</button>
+        </div>
+
+      </form>
+      
+      <!-- <div class="ui grid marg-t-30px">
+        <div class="field">
+          <button class="ui primary button left" id="generateWalletModal">Generate</button>
+          <button class="ui positive button right">Restore</button>
+        </div>
+      </div> -->
+    </div>
+
+
+    
+
+    <div class="ui page dimmer">
+      <div class="content">
+        <div class="center">
+        You need Chrome and <a href="https://metamask.io/" target="_blank">MetaMask extension</a> of Chrome for this application. Please switch to Chrome Browser and install Metamask extension.</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ui horizontal divider"></div>
+  
+  <div class="ui middle stackable aligned centered grid container marg-t-50px marg-b-100px">
+    <h1> Bets </h1>
+    {{#if openBets}}
+      <table class="ui tablet stackable table">
+        <thead>
+          <tr>
+            <th>Better 1 Address</th>
+            <th>Better 1 Asset</th>
+            <th>Better 2 Address</th>
+            <th>Better 2 Asset</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>UniqueId</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each openBets}}
+            <tr>
+              <td>{{better1Address}}</td>
+              <td>{{better1Asset}}</td>
+              <td>
+                {{#if better2Address}}
+                  {{better2Address}}
+                {{else}}
+                  -
+                {{/if}}
+              </td>
+              <td>
+                {{#if better2Asset}}
+                  {{better2Asset}}
+                {{else}}
+                  -
+                {{/if}}
+              </td>
+              <td>{{momentFormat start "MM-DD-YY, hh:mmz"}}</td>
+              <td>{{momentFormat end "MM-DD-YY, hh:mmz"}}</td>
+              <td>{{amount}}</td>
+              <td>{{status}}</td>
+              <td>{{uniqueId}}</td>
+              {{#if $eq status "open"}}
+                <button class="ui primary button" type="submit" onclick="FlowRouter.go('/bet/{{uniqueId}}');">Bet</button>
+              {{/if}}
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/if}}
+  </div>
+
+  <div class="ui modal" id="GenerateWallet">
+    <i class="close icon"></i>
+    <div class="header">
+      Generate Wallet
+    </div>
+    <div class="content">
+      <div class="ui form">
+        <div class="field">
+          <label>Enter some random text</label>
+          <div class="ui input">
+            <input type="text" placeholder="Random text..." id="userEntropy">
+          </div>
+        </div>
+        <div class="field">
+          <label>Enter password to create wallet</label>
+          <div class="ui input">
+            <input type="password" placeholder="Password..." id="userPass">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        Cancel
+      </div>
+      <div class="ui positive right labeled icon button" id="newWallet">
+        Generate Wallet
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui modal" id="ShowWalletDetails">
+    <i class="close icon"></i>
+    <div class="header">
+      Wallet Details
+    </div>
+    <div class="content">
+      <div class="description">
+        <p>
+          Your wallet seed is: <strong>{{walletSeed}}</strong> <br>
+          Your wallet address is: <strong>{{walletAddress}}</strong> <br>
+        </p>
+      </div>
+
+    </div>
+    <div class="actions">
+      <div class="ui positive labeled right icon button deny">
+        Okay
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui modal" id="RestoreWallet">
+    <i class="close icon"></i>
+    <div class="header">
+      Restore Wallet
+    </div>
+    <div class="content">
+      <div class="ui form">
+        <div class="field">
+          <label>Your wallet seed</label>
+          <div class="ui input">
+            <input type="text" placeholder="Your wallet seed..." id="seed">
+          </div>
+        </div>
+        <div class="field">
+          <label>Your password</label>
+          <div class="ui input">
+            <input type="password" placeholder="Password..." id="seedPassword">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        Cancel
+      </div>
+      <div class="ui positive right labeled icon button">
+        Restore Wallet
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
+</template>

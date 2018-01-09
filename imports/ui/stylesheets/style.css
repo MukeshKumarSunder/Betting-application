@@ -1,0 +1,34 @@
+body {
+  padding-top: 61px;  /* Move body of page below navbar. */
+}
+
+.marg-t-30px{
+  margin-top: 30px !important;
+}
+
+.marg-t-50px{
+  margin-top: 50px !important;
+}
+
+.marg-b-100px{
+  margin-bottom: 100px !important;
+}
+.home-started-steps .item{
+  line-height: 2.0em !important;
+}
+
+.width-100px{
+  width: 100px;
+}
+
+.bet-info .item{
+  margin-bottom: 30px;
+}
+
+.bet-info .item>.header{
+  margin-bottom: 5px !important;
+}
+
+.text-left {
+  text-align: left;
+}

@@ -1,0 +1,76 @@
+<template name="Bet_Page">
+  <div class="ui middle stackable aligned grid container marg-b-100px">
+
+    <div class="six wide column left floated left aligned">
+      <h1 class="centered"> Bet Information </h1>
+      {{#with betInfo}}
+        <div class="grid marg-t-50px bet-info">
+          <div class="ui list">
+            <div class="item">
+              <div class="header">Better Address:</div>
+              {{better1Address}}
+            </div>
+            <div class="item">
+              <div class="header">Better Asset:</div>
+              {{better1Asset}}
+            </div>
+            <div class="item">
+              <div class="header">Start:</div>
+              {{momentFormat start "MM-DD-YY, hh:mm a"}}
+            </div>
+            <div class="item">
+              <div class="header">End:</div>
+              {{momentFormat end "MM-DD-YY, hh:mm a"}}
+            </div>
+            <div class="item">
+              <div class="header">Amount:</div>
+              {{amount}}
+            </div>
+            <div class="item">
+              <div class="header">Status:</div>
+              {{status}}
+            </div>
+          </div>
+          
+        </div>
+      {{/with}}
+    </div>
+
+    <div class="six wide column left floated left aligned">
+      <form class="ui form centered" id="place-bet-form">
+        <h1 class="ui header centered">Place Bet</h1><br>
+        <div class="field">
+          <label>Name</label>
+          <input type="text" name="first-name" placeholder="Name" id="name">
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="last-name" placeholder="Email Address" id="email">
+        </div>
+
+        <div class="field">
+          <label>Asset Name</label>u
+          <select class="ui fluid dropdown" id="asset">
+            <option value="">Asset Name</option>
+            {{#each assets}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}}
+          </select>
+        </div>
+        
+        
+        {{#with betInfo}}
+          <div class="field">
+            <label>Amount</label>
+            <input type="text" name="amount" placeholder="Amount" id="amount" disabled="" value="{{amount}}">
+          </div>
+        {{/with}}
+
+        <button class="ui button submit-btn" type="submit">Place Bet</button>
+      </form>
+    </div>
+
+
+  </div>
+  
+</template>
